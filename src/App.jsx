@@ -1,20 +1,25 @@
 import React, { useEffect, useMemo, useState } from "react"
+import Slider from './components/Slider'
+import Buttons from "./components/Buttons";
 
 function App() {
   const [music, setMusics] = useState([
     {
       name: "Fato treino do City",
       singer: "Sippinpurp",
+      img: "https://i.scdn.co/image/ab67616d00001e02dc87d4789265ae3d88e170fe",
       file: "/Music/Sippinpurpp  Fato treino do City.mp3"
     },
     {
       name: "FAKE LOVE",
       singer: "Lon3r Johny",
+      img: "https://i.scdn.co/image/ab67616d00001e027dd4b250a22df1baa689bec4",
       file: "/Music/FAKE LOVE.mp3"
     },
     {
       name: "Lamborghini",
       singer: "KSI",
+      img: "https://i.scdn.co/image/ab67616d00001e025fcf0f30f06000bfb5cd1454",
       file: "/Music/KSI  Lamborghini Explicit ft P Money.mp3"
     },
   ])
@@ -23,8 +28,6 @@ function App() {
   const [playingSong, setPlayingSong] = useState(new Audio(music[currentSong].file));
   const [isPlaying, setIsPlaying] = useState(false);
   const [musicDuration, setMusicDuration] = useState(0);
-  const min = parseInt(musicDuration / 60);
-  const sec = parseInt(musicDuration - (min * 60));
   const [minPlaying, setMinPlaying] = useState(playingSong.currentTime);
 
   useEffect(() => {
@@ -34,13 +37,7 @@ function App() {
 
   useEffect(() => {
     if (isPlaying) playingSong.play();
-    playingSong.onloadedmetadata = () => {
-      setMusicDuration(playingSong.duration);
-    };
   }, [playingSong]);
-
-
-
 
   function handlePlay() {
     if (isPlaying) {
@@ -68,18 +65,16 @@ function App() {
     else setCurrentSong(currentSong + 1);
   }
 
+  function handleTimeChange(time) {
+    playingSong.currentTime = time;
+  }
 
   return (
     <>
-      <div className="buttons">
-        <a onClick={handleBack}>back</a>
-        <a onClick={handlePlay}>play</a>
-        <a onClick={handleNext}>next</a>
-      </div>
-      <div className="Slider">
-        <input type="range" min={0} max={musicDuration} />
-        <p>{minPlaying}</p>
-        <p>{min}:{sec}</p>
+      <div className="bigCard">
+        <img src={music[currentSong].img} alt="" />
+        <Buttons handlePlay={handlePlay} handleBack={handleBack} handleNext={handleNext} />
+        <Slider playingSong={playingSong} isPlaying={isPlaying} handleTimeChange={handleTimeChange} handleNext={handleNext} />
       </div>
     </>
   )
