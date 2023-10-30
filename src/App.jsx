@@ -5,7 +5,7 @@ import Buttons from "./components/Buttons";
 function App() {
   const [music, setMusics] = useState([
     {
-      name: "Fato treino do City",
+      name: "Fato Treino do City",
       singer: "Sippinpurp",
       img: "https://i.scdn.co/image/ab67616d00001e02dc87d4789265ae3d88e170fe",
       file: "/Music/Sippinpurpp  Fato treino do City.mp3"
@@ -73,7 +73,11 @@ function App() {
     <>
       <div className="bigCard">
         <img src={music[currentSong].img} alt="" />
-        <Buttons handlePlay={handlePlay} handleBack={handleBack} handleNext={handleNext} />
+        <div className="bigCard_text">
+          <h3>{music[currentSong].name}</h3>
+          <h5>{music[currentSong].singer}</h5>
+        </div>
+        <Buttons handlePlay={handlePlay} handleBack={handleBack} isPlaying={isPlaying} handleNext={handleNext} />
         <Slider playingSong={playingSong} isPlaying={isPlaying} handleTimeChange={handleTimeChange} handleNext={handleNext} />
       </div>
     </>

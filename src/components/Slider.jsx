@@ -23,10 +23,10 @@ function Slides({ playingSong, isPlaying, handleTimeChange, handleNext }) {
     }, [isPlaying, playingSong])
 
     return (
-        <div className="Slider">
+        <div className="slider">
             <input type="range" min={0} max={playingSong.duration ? playingSong.duration : 0} value={totalPl} onChange={(e) => handleTimeChange(e.target.value)} />
-            <p>{minPl}:{secPl}</p>
-            <p>{min}:{sec}</p>
+            <p className="current">{minPl}:{secPl}</p>
+            <p className="end">{min}:{sec}</p>
         </div>);
 }
 

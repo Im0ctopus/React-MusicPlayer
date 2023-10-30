@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0F0D13;
+    color: #E1E1E6;
+    text-align: center;
+    padding: 10%;
+}
+
+.bigCard {
+    margin: auto;
+    background-color: #2A2141;
+    width: 270px;
+    height: 500px;
+    border-radius: 10px;
+    padding: 38px;
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 15px -5px #E1E1E6;
+}
+
+.bigCard img {
+    aspect-ratio: 1;
+    width: 190px;
+    border-radius: 6px;
+}
+
+.bigCard_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.bigCard_text h5 {
+    font-size: 19px;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.bigCard_text h3 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.bigCard .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bigCard .buttons a {
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.bigCard .buttons a:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+.bigCard .slider {
+    width: 100%;
+    position: relative;
+}
+
+.slider input {
+    width: 100%;
+    -webkit-appearance: none;
+    background-color: #e1e1e656;
+    border-radius: 8px;
+    height: 6px;
+}
+
+.slider input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #E1E1E6;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+}
+
+.bigCard .slider .current {
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 160%;
+    opacity: 0.8;
+}
+
+.bigCard .slider .end {
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 160%;
+    opacity: 0.8;
+}
