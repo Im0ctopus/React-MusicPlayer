@@ -1,33 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useMemo, useState } from "react"
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [music, setMusics] = useState([
+    {
+      name: "Fato treino do City",
+      singer: "Sippinpurp",
+      file: "/Music/Sippinpurpp  Fato treino do City.mp3"
+    },
+    {
+      name: "FAKE LOVE",
+      singer: "Lon3r Johny",
+      file: "/Music/FAKE LOVE.mp3"
+    },
+    {
+      name: "Lamborghini",
+      singer: "KSI",
+      file: "/Music/KSI  Lamborghini Explicit ft P Money.mp3"
+    },
+  ])
 
+  const [currentSong, setCurrentSong] = useState(0);
+  const [playingSong, setPlayingSong] = useState(new Audio(music[currentSong].file));
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    setPlayingSong(new Audio(music[currentSong].file));
+  }, [currentSong]);
+
+  useEffect(() => {
+    if (isPlaying) playingSong.play();
+  }, [playingSong]);
+
+
+  function handlePlay() {
+    if (isPlaying) {
+      playingSong.pause();
+      setIsPlaying(false);
+    } else {
+      playingSong.play();
+      setIsPlaying(true);
+    }
+  }
+
+  function handleBack() {
+    setIsPlaying(true);
+    if (playingSong.currentTime <= 2) {
+      console.log(playingSong.currentTime)
+      playingSong.pause();
+      if (currentSong == 0) setCurrentSong((music.length - 1))
+      else setCurrentSong(currentSong - 1);
+    } else playingSong.currentTime = 0;
+  }
+
+  function handleNext() {
+    setIsPlaying(true);
+    playingSong.pause();
+    if (currentSong == (music.length - 1)) setCurrentSong(0)
+    else setCurrentSong(currentSong + 1);
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button onClick={handleBack}>Back</button>
+        <button onClick={handlePlay}>Play</button>
+        <button onClick={handleNext}>Next</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
