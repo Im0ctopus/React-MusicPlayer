@@ -1,4 +1,4 @@
-#Simple Music Player Card
+# Simple Music Player Card
 
 It has all the features you expect playing some local songs.
 
